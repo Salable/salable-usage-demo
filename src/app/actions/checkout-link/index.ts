@@ -13,7 +13,7 @@ export async function getCheckoutLink(session: Session, planUuid: string): Promi
     const data = await salable.plans.getCheckoutLink(planUuid, {
       customerEmail: session.email,
       granteeId: session.uuid,
-      member: session.email,
+      owner: session.uuid,
       successUrl: `${appBaseUrl}?planUuid=${planUuid}`,
       cancelUrl: `${appBaseUrl}/pricing`,
     })

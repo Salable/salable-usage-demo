@@ -28,7 +28,7 @@ export async function getAllSubscriptions(): Promise<Result<GetAllSubscriptionsE
       }
     }
     const data = await salable.subscriptions.getAll({
-      email: session.email,
+      owner: session.uuid,
       expand: ['plan'],
       sort: 'desc',
       productUuid: salableProductUuid
