@@ -1,11 +1,11 @@
 import {salableProductUuid} from "@/app/constants";
 import {Result} from "@/app/actions/checkout-link";
 import {salable} from "@/app/salable";
-import {CheckLicensesCapabilitiesResponse} from "@salable/node-sdk/dist/src/types";
+import {EntitlementCheck} from "@salable/node-sdk/dist/src/types";
 
-export async function licenseCheck(granteeId: string): Promise<Result<CheckLicensesCapabilitiesResponse>> {
+export async function entitlementCheck(granteeId: string): Promise<Result<EntitlementCheck>> {
   try {
-    const check = await salable.licenses.check({
+    const check = await salable.entitlements.check({
       productUuid: salableProductUuid,
       granteeIds: [granteeId],
     })
@@ -17,7 +17,7 @@ export async function licenseCheck(granteeId: string): Promise<Result<CheckLicen
     console.log(e)
     return {
       data: null,
-      error: 'Failed to check license'
+      error: 'Failed to check entitlement'
     }
   }
 }

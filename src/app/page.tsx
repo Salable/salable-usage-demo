@@ -1,4 +1,4 @@
-import {licenseCheck} from "@/fetch/licenses/check";
+import {entitlementCheck} from "@/fetch/entitlement/check";
 import React, {Suspense} from "react";
 import {StringGeneratorForm} from "@/components/forms/string-generator-form";
 import {getSession} from "@/fetch/session";
@@ -8,7 +8,7 @@ import Link from "next/link";
 import {LockIcon} from "@/components/icons/lock-icon";
 import LoadingSpinner from "@/components/loading-spinner";
 import {getCurrentUsage} from "@/fetch/usage";
-import {getAllLicenses} from "@/fetch/licenses/get-all";
+import {getAllSeats} from "@/fetch/entitlement/get-all";
 
 export const metadata = {
   title: 'Salable Usage Demo',
@@ -45,13 +45,13 @@ const StringGenerator = async ({search}: {search: Record<string, string>}) => {
     await new Promise<void>(async (resolve) => {
       while (true) {
         try {
-          const licenses = await getAllLicenses({
-            granteeId: session.uuid,
+          const seats = await getAllSeats({
+            owner: session.uuid,
             planUuid: search.planUuid,
             status: 'ACTIVE'
           });
-          if (licenses.error) break
-          if (licenses.data?.data.find((l) => l.planUuid === search.planUuid)) {
+          if (seats.error) break
+          if (seats.data?.data.find((s) => s.planUuid === search.planUuid)) {
             resolve()
             break
           }
@@ -63,7 +63,7 @@ const StringGenerator = async ({search}: {search: Record<string, string>}) => {
       }
     })
   }
-  const check = session?.uuid ? await licenseCheck(session.uuid) : {
+  const check = session?.uuid ? await entitlementCheck(session.uuid) : {
     data: null, error: null
   }
 
