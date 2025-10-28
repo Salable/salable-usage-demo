@@ -73,7 +73,7 @@ export const StringGeneratorForm = (
         <div className='flex justify-center items-center'>
           <h2 className='text-center mr-3'>Bytes</h2>
           {bytes.map((byte, index) => (
-           <Byte size={byte} feature={!!check?.features.find((f) => f.feature === byte)} key={`${byte}-${index}`} />
+            <Byte size={byte} feature={!!isFeatured} key={`${byte}-${index}`}/>
           ))}
 
           {check ? (
