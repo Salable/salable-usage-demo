@@ -89,17 +89,15 @@ To remove the requirement of Docker we will change the db provider to `sqlite`.
 #### Create Plan
 
 1. Go to the `Plans` tab and `Create Plan`.
-2. Set the plan name as `Basic`.
+2. Plan name will be `Random String Generator`.
 3. Select `Usage` for pricing model.
 4. Select `Month` for subscription cycle.
 5. Select `Paid` to make it a paid plan.
-6. Currencies will then appear, input the cost of 1, this cost will be billed to a customer per seat every month.
+6. Currencies will then appear, input 1 (£1) as per-unit cost. This will be what the customer will be charged per unit of consumption per billing cycle. The charge per billing cycle will be variable based on what the customer consumes.
 7. Click `Next` to proceed to Features.
 8. This is section is for creating features and assigning values to plans.
-9. Click Create feature and create three different features of type `Boolean`. Name them 16, 32 and 64 with a default value of true.
-10. Repeat the steps to create a Pro plan but set the cost to be 2. Create a new `Boolean` feature called 128 with a default value of false. Click next and ensure its set to false for the existing `Basic` plan.
-11. Set the feature 128 value to be true on the Pro plan.
-12. Create the plan.
+9. Click Create feature and create feature of type `Boolean`. Name it 128 with a default value of true.
+10. Create the plan.
 
 ### Update Environment Variables
 

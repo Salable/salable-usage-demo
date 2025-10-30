@@ -8,7 +8,7 @@ import Link from "next/link";
 import {LockIcon} from "@/components/icons/lock-icon";
 import LoadingSpinner from "@/components/loading-spinner";
 import {getCurrentUsage} from "@/fetch/usage";
-import {getAllSeats} from "@/fetch/entitlement/get-all";
+import {getAllSubscriptions} from "@/fetch/subscriptions/get-all";
 
 export const metadata = {
   title: 'Salable Usage Demo',
@@ -45,13 +45,13 @@ const StringGenerator = async ({search}: {search: Record<string, string>}) => {
     await new Promise<void>(async (resolve) => {
       while (true) {
         try {
-          const seats = await getAllSeats({
+          const subscriptions = await getAllSubscriptions({
             owner: session.uuid,
             planUuid: search.planUuid,
             status: 'ACTIVE'
           });
-          if (seats.error) break
-          if (seats.data?.data.find((s) => s.planUuid === search.planUuid)) {
+          if (subscriptions.error) break
+          if (subscriptions.data?.data.find((s) => s.planUuid === search.planUuid)) {
             resolve()
             break
           }
