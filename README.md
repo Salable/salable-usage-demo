@@ -96,12 +96,12 @@ To remove the requirement of Docker we will change the db provider to `sqlite`.
 6. Currencies will then appear, input 1 (£1) as per-unit cost. This will be what the customer will be charged per unit of consumption per billing cycle. The charge per billing cycle will be variable based on what the customer consumes.
 7. Click `Next` to proceed to Features.
 8. This is section is for creating features and assigning values to plans.
-9. Click Create feature and create feature of type `Boolean`. Name it 128 with a default value of true.
+9. Click Create feature and create feature of type Boolean for 16, 32, 64 and 128. These will be used to lock features behind the entitlements check in the demo app.
 10. Create the plan.
 
 ### Update Environment Variables
 
-1. Copy the Product ID from the "General Settings" tab and assign to `NEXT_PUBLIC_PRODUCT_UUID` in the `.env` file.
+1. Copy the Product ID from the "Overview" tab and assign to `NEXT_PUBLIC_PRODUCT_UUID` in the `.env` file.
 2. Go to `Plans`. Assign the `Random String Generator` plan ID to `NEXT_PUBLIC_SALABLE_PLAN_UUID`.
 3. Go to `API Keys`.
 4. Copy the API Key that was generated on sign up and assign to `SALABLE_API_KEY`.
