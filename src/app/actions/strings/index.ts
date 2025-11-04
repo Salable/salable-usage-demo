@@ -4,7 +4,7 @@ import {z} from "zod";
 import {getIronSession} from "iron-session";
 import {Session} from "@/app/actions/sign-in";
 import {cookies} from "next/headers";
-import {licenseCheck} from "@/fetch/licenses/check";
+import {entitlementCheck} from "@/fetch/entitlement/check";
 import {env} from "@/app/environment";
 import {Result} from "@/app/actions/checkout-link";
 import {Bytes} from "@/components/forms/string-generator-form";
@@ -37,8 +37,8 @@ export const generateString = async (formData: CreateStringRequestBody): Promise
       }
     }
 
-    const check = await licenseCheck(session.uuid)
-    if (!check.data?.capabilities.find((c) => c.capability === 'random_string_generator')) {
+    const check = await entitlementCheck(session.uuid)
+    if (!check.data?.features.find((f) => f.feature === formData.bytes)) {
       return {
         data: null,
         error: 'Unauthorised'

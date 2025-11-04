@@ -88,23 +88,20 @@ To remove the requirement of Docker we will change the db provider to `sqlite`.
 
 #### Create Plan
 
-1. Go to the `Plans` tab on the sidebar and select `Create Plan`
-2. Set the plan name as `Random String Generator` and optionally provide a description.
-3. Press `Continue` to configure `License Type` information.
-4. For the type of plan select `Standard`.
-5. Select `Month` for subscription cycle.
-6. Select `Usage` license type.
-7. Select `Paid` to make it a paid plan.
-8. Currencies will then appear, input `1` (£1) as per-unit cost. This will be what the customer will be charged per unit of consumption per billing cycle. The charge per billing cycle will be variable based on what the customer consumes.
-9. Continue to `Assign values`.
-10. This is section is for assigning feature values that can be used on pricing tables. This is not required to get set up.
-11. Click `Continue` to `Capabilities`.
-12. Create four capabilities of `16`, `32`, `64` and `128`. These will be used to lock features behind the license check in the demo app.
-13. Create Plan.
+1. Go to the `Plans` tab and `Create Plan`.
+2. Plan name will be `Random String Generator`.
+3. Select `Usage` for pricing model.
+4. Select `Month` for subscription cycle.
+5. Select `Paid` to make it a paid plan.
+6. Currencies will then appear, input 1 (£1) as per-unit cost. This will be what the customer will be charged per unit of consumption per billing cycle. The charge per billing cycle will be variable based on what the customer consumes.
+7. Click `Next` to proceed to Features.
+8. This is section is for creating features and assigning values to plans.
+9. Click Create feature and create feature of type Boolean for 16, 32, 64 and 128. These will be used to lock features behind the entitlements check in the demo app.
+10. Create the plan.
 
 ### Update Environment Variables
 
-1. Copy the Product ID from the "General Settings" tab and assign to `NEXT_PUBLIC_PRODUCT_UUID` in the `.env` file.
+1. Copy the Product ID from the "Overview" tab and assign to `NEXT_PUBLIC_PRODUCT_UUID` in the `.env` file.
 2. Go to `Plans`. Assign the `Random String Generator` plan ID to `NEXT_PUBLIC_SALABLE_PLAN_UUID`.
 3. Go to `API Keys`.
 4. Copy the API Key that was generated on sign up and assign to `SALABLE_API_KEY`.

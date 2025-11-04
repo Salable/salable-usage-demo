@@ -1,4 +1,4 @@
-import {licenseCheck} from "@/fetch/licenses/check";
+import {entitlementCheck} from "@/fetch/entitlement/check";
 import React, {Suspense} from "react";
 import {StringGeneratorForm} from "@/components/forms/string-generator-form";
 import {getSession} from "@/fetch/session";
@@ -8,7 +8,7 @@ import Link from "next/link";
 import {LockIcon} from "@/components/icons/lock-icon";
 import LoadingSpinner from "@/components/loading-spinner";
 import {getCurrentUsage} from "@/fetch/usage";
-import {getAllLicenses} from "@/fetch/licenses/get-all";
+import {getAllSubscriptions} from "@/fetch/subscriptions/get-all";
 
 export const metadata = {
   title: 'Salable Usage Demo',
@@ -45,13 +45,13 @@ const StringGenerator = async ({search}: {search: Record<string, string>}) => {
     await new Promise<void>(async (resolve) => {
       while (true) {
         try {
-          const licenses = await getAllLicenses({
-            granteeId: session.uuid,
+          const subscriptions = await getAllSubscriptions({
+            owner: session.uuid,
             planUuid: search.planUuid,
             status: 'ACTIVE'
           });
-          if (licenses.error) break
-          if (licenses.data?.data.find((l) => l.planUuid === search.planUuid)) {
+          if (subscriptions.error) break
+          if (subscriptions.data?.data.find((s) => s.planUuid === search.planUuid)) {
             resolve()
             break
           }
@@ -63,11 +63,9 @@ const StringGenerator = async ({search}: {search: Record<string, string>}) => {
       }
     })
   }
-  const check = session?.uuid ? await licenseCheck(session.uuid) : {
+  const check = session?.uuid ? await entitlementCheck(session.uuid) : {
     data: null, error: null
   }
-
-  console.log(check)
 
   return (
     <>
@@ -75,7 +73,7 @@ const StringGenerator = async ({search}: {search: Record<string, string>}) => {
         <>
           <StringGeneratorForm check={check.data} currentUsage={currentUsage.data} />
 
-          {!check.data ? (
+          {!check.data?.features.find((f) => f.feature === "random_string_generator") ? (
             <div className='flex justify-center max-w-[400px] mx-auto'>
               <div className='rounded-md inline-flex flex-col mx-auto mt-6 p-3 border-2'>
                 <p>To start creating secure strings subscribe to a plan from our pricing table and get started!</p>

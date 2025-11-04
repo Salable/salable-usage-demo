@@ -3,7 +3,7 @@ import {getIronSession} from "iron-session";
 import {cookies} from "next/headers";
 import {Session} from "@/app/actions/sign-in";
 import { Result } from "@/app/actions/checkout-link";
-import {PaginatedSubscriptionInvoice, Plan, PlanCurrency, Subscription} from "@salable/node-sdk/dist/src/types";
+import {PaginatedSubscriptionInvoice, Plan, Subscription} from "@salable/node-sdk/dist/src/types";
 import {salable} from "@/app/salable";
 import {SalableResponseError} from "@salable/node-sdk";
 import {salableProductUuid} from "@/app/constants";
@@ -45,15 +45,9 @@ export async function getAllSubscriptions(): Promise<Result<GetAllSubscriptionsE
   }
 }
 
-export type SubscriptionExpandedPlanCurrency = Subscription & {
-  plan: Plan & {
-    currencies: PlanCurrency[]
-  }
-}
-
-export async function getOneSubscription(uuid: string): Promise<Result<SubscriptionExpandedPlanCurrency | null>> {
+export async function getOneSubscription(uuid: string): Promise<Result<SubscriptionExpandedPlan | null>> {
   try {
-    const data = await salable.subscriptions.getOne(uuid, {expand: ['plan.currencies']}) as SubscriptionExpandedPlanCurrency
+    const data = await salable.subscriptions.getOne(uuid, {expand: ['plan']}) as SubscriptionExpandedPlan
     return {
       data, error: null
     }

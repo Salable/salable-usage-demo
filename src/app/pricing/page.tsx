@@ -4,7 +4,7 @@ import {salableBasicPlanUuid} from "@/app/constants";
 import {PlanButton} from "@/components/plan-button";
 import React, {Suspense} from "react";
 import {getSession} from "@/fetch/session";
-import {licenseCheck} from "@/fetch/licenses/check";
+import {entitlementCheck} from "@/fetch/entitlement/check";
 import {FetchError} from "@/components/fetch-error";
 
 export const metadata = {
@@ -65,13 +65,13 @@ const BasicPlanPricingTableButton = async () => {
       </Link>
     )
   }
-  const check = session?.uuid ? await licenseCheck(session.uuid) : {
+  const check = session?.uuid ? await entitlementCheck(session.uuid) : {
     data: null, error: null
   }
   if (check.error) return <FetchError error='Failed to create button' />
   return (
     <>
-      {check?.data?.capabilities?.find((a) => a.capability === 'random_string_generator') ? (
+      {check?.data?.features?.find((a) => a.feature === 'random_string_generator') ? (
         <div className={`p-4 text-white rounded-md leading-none bg-green-700 inline-flex items-center w-full justify-center font-bold`}>
           <div className='mr-1'><TickIcon fill='#FFF' height={14} width={14}/></div>
           Already subscribed

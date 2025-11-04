@@ -7,15 +7,9 @@ import {generateString} from "@/app/actions/strings";
 import {toast} from "react-toastify";
 import {CurrentUsage} from "@/fetch/usage";
 import {format} from "date-fns";
+import { EntitlementCheck } from "@salable/node-sdk/dist/src/types";
 
 export type Bytes = '16' | '32' | '64' | '128'
-export type LicenseCheckResponse = {
-  capabilities: {
-    capability: string;
-    expiry: string
-  }[],
-  signature: string,
-}
 
 export const StringGeneratorForm = (
   {
@@ -23,7 +17,7 @@ export const StringGeneratorForm = (
     currentUsage
   }:
   {
-    check: LicenseCheckResponse | null,
+    check: EntitlementCheck | null,
     currentUsage: CurrentUsage | null
   }
 ) => {
@@ -50,25 +44,25 @@ export const StringGeneratorForm = (
   }
 
   const bytes: Bytes[] = ['16', '32', '64', '128']
-  const isLicensed = check?.capabilities.find((c) => c.capability === 'random_string_generator')
+  const isSubscribed = check?.features.find((c) => c.feature === 'random_string_generator')
 
-  const Byte = ({size, capability}: {size: string; capability: boolean}) => {
+  const Byte = ({size, feature}: {size: string; feature: boolean}) => {
     return (
       <>
         <label
           htmlFor={size}
           className={`p-3 inline-flex items-center leading-none border-2 mr-2 rounded-md font-bold
-            ${watch().bytes === size ? "border-black bg-black text-white" : ""}
-            ${capability ? "cursor-pointer" : ""}
-            ${!capability ? "bg-gray-200" : ""}
+           ${feature && watch().bytes === size ? "border-black bg-black text-white" : ""}
+            ${feature ? "cursor-pointer" : ""}
+            ${!feature ? "bg-gray-200" : ""}
           `}
         >
           {size}
-          {!capability ? (
+          {!feature ? (
             <div className='ml-1'><LockIcon height={14} width={14} fill='black'/></div>
           ) : null}
         </label>
-        <input disabled={!capability} id={size} type="radio" value={size} {...register('bytes')} className='hidden'/>
+        <input disabled={!feature} id={size} type="radio" value={size} {...register('bytes')} className='hidden'/>
       </>
     )
   }
@@ -79,10 +73,10 @@ export const StringGeneratorForm = (
         <div className='flex justify-center items-center'>
           <h2 className='text-center mr-3'>Bytes</h2>
           {bytes.map((byte, index) => (
-            <Byte size={byte} capability={!!isLicensed} key={`${byte}-${index}`}/>
+            <Byte size={byte} feature={!!isSubscribed} key={`${byte}-${index}`}/>
           ))}
 
-          {check ? (
+          {isSubscribed ? (
             <button
               className={`p-3 text-white rounded-md leading-none font-bold bg-blue-700 hover:bg-blue-900 transition text-sm`}
               disabled={isSubmitting}
@@ -101,7 +95,7 @@ export const StringGeneratorForm = (
       ) : null}
 
 
-      {currentUsage ? (
+      {currentUsage && isSubscribed ? (
         <div className='mt-6'>
           <h2 className='text-2xl font-bold text-gray-900 mr-4 text-center'>
             <span className='mr-1'>{currentUsage.unitCount + creditsUsedInSession}</span>
