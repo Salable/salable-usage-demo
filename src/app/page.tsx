@@ -67,15 +67,13 @@ const StringGenerator = async ({search}: {search: Record<string, string>}) => {
     data: null, error: null
   }
 
-  console.log(check)
-
   return (
     <>
       {!check.error ? (
         <>
           <StringGeneratorForm check={check.data} currentUsage={currentUsage.data} />
 
-          {!check.data ? (
+          {!check.data?.features.find((f) => f.feature === "random_string_generator") ? (
             <div className='flex justify-center max-w-[400px] mx-auto'>
               <div className='rounded-md inline-flex flex-col mx-auto mt-6 p-3 border-2'>
                 <p>To start creating secure strings subscribe to a plan from our pricing table and get started!</p>

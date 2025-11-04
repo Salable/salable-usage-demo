@@ -45,15 +45,9 @@ export async function getAllSubscriptions(): Promise<Result<GetAllSubscriptionsE
   }
 }
 
-export type SubscriptionExpandedPlanCurrency = Subscription & {
-  plan: Plan & {
-    currencies: PlanCurrency[]
-  }
-}
-
-export async function getOneSubscription(uuid: string): Promise<Result<SubscriptionExpandedPlanCurrency | null>> {
+export async function getOneSubscription(uuid: string): Promise<Result<SubscriptionExpandedPlan | null>> {
   try {
-    const data = await salable.subscriptions.getOne(uuid, {expand: ['plan.currencies']}) as SubscriptionExpandedPlanCurrency
+    const data = await salable.subscriptions.getOne(uuid, {expand: ['plan']}) as SubscriptionExpandedPlan
     return {
       data, error: null
     }

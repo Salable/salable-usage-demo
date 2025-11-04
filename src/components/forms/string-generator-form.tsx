@@ -76,7 +76,7 @@ export const StringGeneratorForm = (
             <Byte size={byte} feature={!!isFeatured} key={`${byte}-${index}`}/>
           ))}
 
-          {check ? (
+          {isFeatured ? (
             <button
               className={`p-3 text-white rounded-md leading-none font-bold bg-blue-700 hover:bg-blue-900 transition text-sm`}
               disabled={isSubmitting}
@@ -95,7 +95,7 @@ export const StringGeneratorForm = (
       ) : null}
 
 
-      {currentUsage ? (
+      {currentUsage && isFeatured ? (
         <div className='mt-6'>
           <h2 className='text-2xl font-bold text-gray-900 mr-4 text-center'>
             <span className='mr-1'>{currentUsage.unitCount + creditsUsedInSession}</span>
