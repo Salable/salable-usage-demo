@@ -44,7 +44,7 @@ export const StringGeneratorForm = (
   }
 
   const bytes: Bytes[] = ['16', '32', '64', '128']
-  const isFeatured = check?.features.find((c) => c.feature === 'random_string_generator')
+  const isSubscribed = check?.features.find((c) => c.feature === 'random_string_generator')
 
   const Byte = ({size, feature}: {size: string; feature: boolean}) => {
     return (
@@ -73,10 +73,10 @@ export const StringGeneratorForm = (
         <div className='flex justify-center items-center'>
           <h2 className='text-center mr-3'>Bytes</h2>
           {bytes.map((byte, index) => (
-            <Byte size={byte} feature={!!isFeatured} key={`${byte}-${index}`}/>
+            <Byte size={byte} feature={!!isSubscribed} key={`${byte}-${index}`}/>
           ))}
 
-          {isFeatured ? (
+          {isSubscribed ? (
             <button
               className={`p-3 text-white rounded-md leading-none font-bold bg-blue-700 hover:bg-blue-900 transition text-sm`}
               disabled={isSubmitting}
@@ -95,7 +95,7 @@ export const StringGeneratorForm = (
       ) : null}
 
 
-      {currentUsage && isFeatured ? (
+      {currentUsage && isSubscribed ? (
         <div className='mt-6'>
           <h2 className='text-2xl font-bold text-gray-900 mr-4 text-center'>
             <span className='mr-1'>{currentUsage.unitCount + creditsUsedInSession}</span>
