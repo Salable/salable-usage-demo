@@ -3,7 +3,7 @@ import {getIronSession} from "iron-session";
 import {cookies} from "next/headers";
 import {Session} from "@/app/actions/sign-in";
 import { Result } from "@/app/actions/checkout-link";
-import {PaginatedSubscriptionInvoice, Plan, PlanCurrency, Subscription} from "@salable/node-sdk/dist/src/types";
+import {PaginatedSubscriptionInvoice, Plan, Subscription} from "@salable/node-sdk/dist/src/types";
 import {salable} from "@/app/salable";
 import {SalableResponseError} from "@salable/node-sdk";
 import {salableProductUuid} from "@/app/constants";
