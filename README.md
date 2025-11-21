@@ -78,13 +78,12 @@ To remove the requirement of Docker we will change the db provider to `sqlite`.
 1. [Sign up](https://salable.app/login) for Salable or [login](https://salable.app/login) if you already have an account.
 2. Ensure you have `Test Mode` enabled.
 
-#### Create Product
+#### Setup Product
 
-1. Go to the Products page and click the `Create Product` button.
-2. Give your product any name.
-3. Tick the `Paid Product` checkbox.
-4. Select the test payment integration that is created for you on sign up. If you already have created a payment integration this can be used instead.
-5. Select `GBP` as the product's default currency.
+1. Locate the `product-yaml.yaml` file in the directory and save it.
+2. Go to the Products page and click the `Import product` button.
+3. Click on choose file and select the saved yaml file.
+4. Select the payment integration and click on `Import file`.
 
 #### Create Plan
 

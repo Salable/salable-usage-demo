@@ -1,0 +1,68 @@
+version: s1-1.0.0
+product:
+  displayName: Usage demo product
+  description: ''
+  paid: true
+  features:
+    - displayName: '16'
+      variableName: '16'
+      description: ''
+      visibility: private
+      valueType: boolean
+      defaultValue: 'false'
+      showUnlimited: false
+      sortOrder: 0
+    - displayName: '32'
+      variableName: '32'
+      description: ''
+      visibility: private
+      valueType: boolean
+      defaultValue: 'false'
+      showUnlimited: false
+      sortOrder: 1
+    - displayName: '64'
+      variableName: '64'
+      description: ''
+      visibility: private
+      valueType: boolean
+      defaultValue: 'false'
+      showUnlimited: false
+      sortOrder: 2
+    - displayName: '128'
+      variableName: '128'
+      description: ''
+      visibility: private
+      valueType: boolean
+      defaultValue: 'false'
+      showUnlimited: false
+      sortOrder: 3
+  currencies:
+    - shortName: USD
+      defaultCurrency: true
+  plans:
+    - displayName: Random String Generator
+      description: ''
+      visibility: public
+      pricingType: paid
+      licenseType: metered
+      evalDays: 0
+      interval: month
+      length: 1
+      perSeatAmount: 1
+      maxSeatAmount: -1
+      features:
+        - variableName: '16'
+          value: 'false'
+          isUnlimited: false
+        - variableName: '32'
+          value: 'false'
+          isUnlimited: false
+        - variableName: '64'
+          value: 'false'
+          isUnlimited: false
+        - variableName: '128'
+          value: 'false'
+          isUnlimited: false
+      currencies:
+        - shortName: USD
+          price: 100
