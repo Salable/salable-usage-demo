@@ -85,19 +85,6 @@ To remove the requirement of Docker we will change the db provider to `sqlite`.
 3. As this is a paid product, you'll need to select a payment integration.
 4. Click `Import file`.
 
-#### Create Plan
-
-1. Go to the `Plans` tab and `Create Plan`.
-2. Plan name will be `Random String Generator`.
-3. Select `Usage` for pricing model.
-4. Select `Month` for subscription cycle.
-5. Select `Paid` to make it a paid plan.
-6. Currencies will then appear, input 1 (£1) as per-unit cost. This will be what the customer will be charged per unit of consumption per billing cycle. The charge per billing cycle will be variable based on what the customer consumes.
-7. Click `Next` to proceed to Features.
-8. This is section is for creating features and assigning values to plans.
-9. Click Create feature and create feature of type Boolean for 16, 32, 64 and 128. These will be used to lock features behind the entitlements check in the demo app.
-10. Create the plan.
-
 ### Update Environment Variables
 
 1. Copy the Product ID from the `Overview` tab and assign to `NEXT_PUBLIC_PRODUCT_UUID` in the `.env` file.
