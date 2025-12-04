@@ -80,10 +80,10 @@ To remove the requirement of Docker we will change the db provider to `sqlite`.
 
 #### Setup Product
 
-1. Locate the `product-yaml.yaml` file in the directory and save it.
-2. Go to the Products page and click the `Import product` button.
-3. Click on choose file and select the saved yaml file.
-4. Select the payment integration and click on `Import file`.
+1. Go to the Products page in the Salable dashboard and click the `Import product` button.
+2. Navigate to this demo project in the file system on your machine. Select `salable-product.yaml` in the root of the project and import it.
+3. As this is a paid product, you'll need to select a payment integration.
+4. Click `Import file`.
 
 #### Create Plan
 
@@ -100,7 +100,7 @@ To remove the requirement of Docker we will change the db provider to `sqlite`.
 
 ### Update Environment Variables
 
-1. Copy the Product ID from the "Overview" tab and assign to `NEXT_PUBLIC_PRODUCT_UUID` in the `.env` file.
+1. Copy the Product ID from the `Overview` tab and assign to `NEXT_PUBLIC_PRODUCT_UUID` in the `.env` file.
 2. Go to `Plans`. Assign the `Random String Generator` plan ID to `NEXT_PUBLIC_SALABLE_PLAN_UUID`.
 3. Go to `API Keys`.
 4. Copy the API Key that was generated on sign up and assign to `SALABLE_API_KEY`.
