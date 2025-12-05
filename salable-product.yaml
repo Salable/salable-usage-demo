@@ -9,15 +9,15 @@ product:
       description: ''
       visibility: private
       valueType: boolean
-      defaultValue: 'false'
+      defaultValue: 'true'
       showUnlimited: false
       sortOrder: 0
     - displayName: '32'
       variableName: '32'
       description: ''
-      visibility: private
+      visibility: public
       valueType: boolean
-      defaultValue: 'false'
+      defaultValue: 'true'
       showUnlimited: false
       sortOrder: 1
     - displayName: '64'
@@ -25,7 +25,7 @@ product:
       description: ''
       visibility: private
       valueType: boolean
-      defaultValue: 'false'
+      defaultValue: 'true'
       showUnlimited: false
       sortOrder: 2
     - displayName: '128'
@@ -33,7 +33,7 @@ product:
       description: ''
       visibility: private
       valueType: boolean
-      defaultValue: 'false'
+      defaultValue: 'true'
       showUnlimited: false
       sortOrder: 3
   currencies:
@@ -52,16 +52,16 @@ product:
       maxSeatAmount: -1
       features:
         - variableName: '16'
-          value: 'false'
+          value: 'true'
           isUnlimited: false
         - variableName: '32'
-          value: 'false'
+          value: 'true'
           isUnlimited: false
         - variableName: '64'
-          value: 'false'
+          value: 'true'
           isUnlimited: false
         - variableName: '128'
-          value: 'false'
+          value: 'true'
           isUnlimited: false
       currencies:
         - shortName: USD
