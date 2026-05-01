@@ -1,3 +1,6 @@
+> [!CAUTION]
+> This demo was made for Legacy Salable and won't work correctly with the new version of the platform.
+
 ![Salable Usage Pricing Demo](https://raw.githubusercontent.com/Salable/usage-demo/94992bd38f24dcf5a7e3181f35701320b48ecee0/public/usage-banner.gif)
 
 This demo is to demonstrate using [usage](https://www.salable.app/features/usage-based-pricing) pricing with Salable.
